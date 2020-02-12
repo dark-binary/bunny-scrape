@@ -1,4 +1,4 @@
-# Scrape
+# Bunny Scrape
 
 Bunny script to execute scrape.sh file which gathers user information in a system.
 
