@@ -16,7 +16,7 @@ Q DELAY 1000
 #getting sudo permissions
 Q STRING su
 Q ENTER
-Q STRING L1fe.1s.B1n0ry
+Q STRING #password#
 Q ENTER
 
 #grabbing the username
