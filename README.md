@@ -10,3 +10,5 @@ Scrape script gathers information such as:
 4. List of admin users
 5. Number of non-admin users
 6. List of non admin users
+
+PS: The user has to replace the word #password# in the 19th line of the file payload.txt to the actual password (no quotes).
